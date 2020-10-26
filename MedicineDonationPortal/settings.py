@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'givmed.apps.GivmedConfig',
+    
 ]
 
 MIDDLEWARE = [
@@ -124,5 +125,5 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
     STATIC_DIR,
-    
+
 ]
