@@ -18,14 +18,16 @@
     background-color: rgb(69, 69, 70);
     text-align: center;
 }
-
-li,a,button{
+a{
+    color: yellowgreen;
+}
+li,button{
     font-family: 'Montserrat',sans-serif;
     font-weight: 500;
     font-size: 16px;
-    color: rgb(241, 184, 184);
     text-decoration: none;
 }
+
 
 .logo{
     border-radius:50%;
@@ -43,15 +45,11 @@ li,a,button{
 .nav_links li{
     display: inline-block;
     padding: 0px 20px;
+    transition: all 0.3s ease 0s
 }
 
-.nav_links li a{
-    transition: all 0.3s ease 0s;
-}
 
-.nav_links li a:hover{
-    color: #0088a9;
-}
+
 
 button{
     padding: 9px 25px;

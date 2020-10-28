@@ -40,7 +40,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'givmed.apps.GivmedConfig',
-    
+    'address',
+    'crispy_forms',
+
 ]
 
 MIDDLEWARE = [
@@ -70,6 +72,8 @@ TEMPLATES = [
         },
     },
 ]
+
+AUTH_USER_MODEL = 'givmed.User'
 
 WSGI_APPLICATION = 'MedicineDonationPortal.wsgi.application'
 
@@ -127,3 +131,4 @@ STATICFILES_DIRS = [
     STATIC_DIR,
 
 ]
+CRISPY_TEMPLATE_PACKS = 'bootstrap4'
