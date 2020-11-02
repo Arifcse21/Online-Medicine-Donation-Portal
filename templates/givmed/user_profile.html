@@ -32,14 +32,7 @@
         </nav>
         <a href="#" class="cta" ><button>Contact us</button></a>
     </header>
-    {% if messages %}
-        {% for message in messages %}
-            <div class="alert alert-{{ message.tags}}">
-                {{ message }}
-            </div>    
-        {% endfor  %}
-    {% endif  %}
-            
+       
     <footer class="pagefooter bg-dark">
         <div class="bg-gray">
             <div class="container" >
@@ -53,6 +46,15 @@
                                 <td><a href="#">Contact us</a></td>
                                 <td><a href="#">About us</a></td>
                             </tr>
+                            <div class="container">
+                                {% if messages %}
+                                    {% for message in messages %}
+                                        <div class="alert alert-{{ message.tags}}">
+                                            {{ message }}
+                                        </div>    
+                                    {% endfor  %}
+                                {% endif  %}
+                            </div>
                             <tr>
                                 <td><a href="#"><i class="fab fa-facebook-square"></i></a></td>
                                 <td><a href="#"><i class="fab fa-twitter"></i></a></td>

@@ -22,11 +22,13 @@
             <ul class="nav_links">
                 <li><a href="#">Organization Donation</a></li>
                 <li><a href="#">Individual Donation</a></li>
-                {% if request.user.is_authenticate %}
+                {% if user.is_authenticate %}
                     {{ request.user.username }}
+                    <li><a href="#">Logout</a></li>    
+
                 {% else %}
                     <li><a href="{% url 'registration' %}">Register</a></li>
-                    <li><a href="#">Login</a></li>    
+                    <li><a href="{% url 'login' %}">Login</a></li>    
                 {% endif  %}
             </ul>
         </nav>

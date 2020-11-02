@@ -74,7 +74,7 @@ TEMPLATES = [
 ]
 
 AUTH_USER_MODEL = 'givmed.User'
-
+LOGIN_REDIRECT_URL = 'givmed/profile'
 WSGI_APPLICATION = 'MedicineDonationPortal.wsgi.application'
 
 
