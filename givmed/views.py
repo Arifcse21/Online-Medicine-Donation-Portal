@@ -1,11 +1,12 @@
 from django.shortcuts import render,redirect
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
 from givmed.models import User
 from django import forms
 from givmed.forms import RegistrationForm, LoginForm
 
 # Create your views here.
+
 
 def index(request):
     return render(request, 'givmed/index.html')
@@ -18,10 +19,9 @@ def register(request):
         if form.is_valid():
             form.save()
             username = form.cleaned_data.get('username')
-            password = form.cleaned_data.get('password')
-            messages.success(request,f'Account created for {username}!')
-            user = authenticate( username=username, password=password)
-            return redirect('profile')
+            # password = form.cleaned_data.get('password')
+            messages.success(request,f'Account created for {username}! Please login')
+            return redirect('index')
         
     else:
         form = RegistrationForm()
@@ -40,10 +40,18 @@ def login_view(request):
             email = request.POST['email']
             password = request.POST['password']
             user = authenticate(email=email,password=password)
-
+            login(request, user)
             return redirect('profile')
     else:
         lform = LoginForm() 
 
 
     return render(request,'givmed/login.html',{"lform":lform})
+
+
+def logout_view(request):
+    logout(request)
+    messages.success(request,'You have successfully logged out.')
+    return redirect('index')
+
+

@@ -10,8 +10,8 @@ class UserManager(BaseUserManager):
             raise ValueError('User must have an username ')
         if not first_name:
             raise ValueError('User must have a first_name ')
-        if not last_name:
-            raise ValueError('User must have a last_name ')
+        # if not last_name:
+        #     raise ValueError('User must have a last_name ')
         if not address:
             raise ValueError('User must have an address ')
         if not password:

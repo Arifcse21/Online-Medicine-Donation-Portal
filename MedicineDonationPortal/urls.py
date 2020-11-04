@@ -17,9 +17,10 @@ from django.contrib import admin
 from django.urls import path, include
 from givmed import views
 
+
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('login/givmed/profile/',views.profile,name='profile'),
     path('', include('givmed.urls')), 
-
+    
 ]
