@@ -3,7 +3,7 @@ from django.contrib.auth.models import AbstractUser,BaseUserManager
 # Create your models here.
 
 class UserManager(BaseUserManager):
-    def create_user(self, email,username, first_name, last_name,address, password=None ):
+    def create_user(self, email,username, first_name, last_name,address, phone, password=None ):
         if not email:
             raise ValueError('User must have an email address ')
         if not username:
@@ -14,6 +14,8 @@ class UserManager(BaseUserManager):
         #     raise ValueError('User must have a last_name ')
         if not address:
             raise ValueError('User must have an address ')
+        if not phone:
+            raise ValueError('User must have a phone number ')
         if not password:
             raise ValueError('User must have a password ')
 
@@ -23,6 +25,7 @@ class UserManager(BaseUserManager):
             first_name = first_name,
             last_name = last_name,
             address = address,
+            phone = phone,
             password = password,
             
         )
@@ -32,7 +35,7 @@ class UserManager(BaseUserManager):
         return user
     
 
-    def create_superuser(self, email, username, first_name, last_name, address, password):
+    def create_superuser(self, email, username, first_name, last_name, address, phone, password):
         user = self.create_user(
             email = self.normalize_email(email),
             password = password,
@@ -40,6 +43,7 @@ class UserManager(BaseUserManager):
             first_name = first_name,
             last_name = last_name,
             address = address,
+            phone = phone, 
         )
 
         user.is_admin = True
@@ -62,9 +66,10 @@ class User(AbstractUser):
     first_name          = models.CharField(max_length=30)
     last_name           = models.CharField(max_length=30)
     address             = models.CharField(max_length=1024)
+    phone               = models.CharField(max_length=11)
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['username','first_name','last_name','address', 'password']
+    REQUIRED_FIELDS = ['username','first_name','last_name','address', 'phone', 'password']
 
     object = UserManager()
 

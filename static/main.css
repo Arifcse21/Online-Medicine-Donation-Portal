@@ -28,14 +28,15 @@ li,button{
     text-decoration: none;
 }
 
-
-.logo{
-    border-radius:50%;
+.logo {
     cursor: pointer;
-    display:block;
-    width: 50px;
+    display: block;
     height: 50px;
-    max-height: 70px;
+}
+
+.dbtn {
+    position: relative;
+    float: right;
 }
 
 .nav_links{
@@ -45,15 +46,15 @@ li,button{
 .nav_links li{
     display: inline-block;
     padding: 0px 20px;
-    transition: all 0.3s ease 0s
+    transition: all 0.3s ease 0s;
 }
 
-
+ 
 
 
 button{
     padding: 9px 25px;
-    background-color: rgba(0,136,169,1);
+    background-color: rgb(115, 193, 212);
     border:none;
     border-radius: 50px;
     cursor: pointer;
@@ -61,7 +62,7 @@ button{
 }
 
 button:hover{
-    background-color: rgba(0,136,169,0.8)
+    background-color: rgba(44, 241, 175, 0.596)
 }
 
 .fstdsc{

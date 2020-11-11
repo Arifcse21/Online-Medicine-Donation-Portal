@@ -3,7 +3,10 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib import messages
 from givmed.models import User
 from django import forms
-from givmed.forms import RegistrationForm, LoginForm
+from givmed.forms import RegistrationForm, LoginForm, EditProfile
+from django.contrib.auth import views as auth_views
+
+
 
 # Create your views here.
 
@@ -14,39 +17,33 @@ def index(request):
 
 
 def register(request):
+    title = '-register'
     if request.method == "POST":
         form =RegistrationForm(request.POST)
         if form.is_valid():
             form.save()
             username = form.cleaned_data.get('username')
-            # password = form.cleaned_data.get('password')
             messages.success(request,f'Account created for {username}! Please login')
             return redirect('index')
         
     else:
         form = RegistrationForm()
-    return render(request, 'givmed/registration.html',{'form': form})
+    return render(request, 'givmed/registration.html',{'form': form,'title':title})
 
 def profile(request):
-    return render(request,'givmed/user_profile.html')
-
-def login_view(request):
-    user = request.user
-    if user.is_authenticated:
-        return redirect('profile')
+    title = '-profile'
     if request.method == "POST":
-        lform = LoginForm(request.POST)
-        if lform.is_valid():
-            email = request.POST['email']
-            password = request.POST['password']
-            user = authenticate(email=email,password=password)
-            login(request, user)
+        form = EditProfile(request.POST, instance=request.user)
+
+        if form.is_valid():
+            form.save()
             return redirect('profile')
+    
     else:
-        lform = LoginForm() 
+        form = EditProfile(instance=request.user)
+        return render(request,'givmed/user_profile.html',{'title':title,'form':form})
 
 
-    return render(request,'givmed/login.html',{"lform":lform})
 
 
 def logout_view(request):

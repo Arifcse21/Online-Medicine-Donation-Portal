@@ -1,6 +1,6 @@
 from django import forms
 from givmed.models import User
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 
 
         
@@ -10,7 +10,7 @@ class RegistrationForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ('email', 'username', 'first_name','last_name','address','password1','password2')
+        fields = ('email', 'username', 'first_name','last_name','address', 'phone', 'password1','password2')
 
 
 class LoginForm(forms.ModelForm):
@@ -20,9 +20,16 @@ class LoginForm(forms.ModelForm):
 
 
 
-    #       def clean(self):
-    #     email = self.cleaned_data['email']
-    #     password = self.cleaned_data['password']
-    #     if not authenticate(email=email, password=password):
-    #         raise forms.ValidationError('Invalid login')
+class EditProfile(UserChangeForm):
+
+    class Meta:
+        model=User
+        fields = (
+            'email', 
+            'first_name',
+            'last_name',
+            'address',
+            'phone',
+            'password',
+            )
 
