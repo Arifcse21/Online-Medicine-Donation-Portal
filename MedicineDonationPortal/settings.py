@@ -18,6 +18,7 @@ TEMPLATE_DIR = BASE_DIR / 'templates'
 STATIC_DIR = BASE_DIR / 'static'
 
 
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
@@ -77,6 +78,7 @@ TEMPLATES = [
 AUTH_USER_MODEL = 'givmed.User'
 LOGIN_REDIRECT_URL = 'profile'
 LOGOUT_REDIRECT_URL = 'index'
+DATE_FORMAT = 'd.m.Y'
 
 
 WSGI_APPLICATION = 'MedicineDonationPortal.wsgi.application'
@@ -130,6 +132,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+MEDIA_URL = '/images/'
+MEDIA_ROOT = BASE_DIR / '/static/images'
 
 STATICFILES_DIRS = [
     STATIC_DIR,

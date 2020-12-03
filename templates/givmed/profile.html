@@ -1,0 +1,41 @@
+{% extends 'givmed/base.html' %}
+{% load static %}
+{% block content %}
+
+
+<div class="container">
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags}}">
+                {{ message }}
+            </div>    
+        {% endfor  %}
+    {% endif  %}
+</div>
+
+
+ 
+<div class="container">
+    <legend>
+        <a href="{% url 'donation' %}" class='pull-right'><button>Make a Donation</button></a>
+    </legend>
+
+        Your Profile
+
+    <div class="container jumbotron">
+        <ul class="list-unstyled" >
+            <li> <img src= "{{request.user.profile_pic.url}}" > </li>
+            <li>Email:              {{ request.user.email }}</li>
+            <li>First Name:         {{ request.user.first_name }} </li>
+            <li>Last Name:          {{ request.user.last_name }} </li>
+            <li>Address:            {{ request.user.address }} </li>
+            <li>Phone:              {{ request.user.phone }} </li>
+        </ul>
+        <a href="{% url 'edit_profile'  %}">Edit Your profile</a> <br>
+    </div>
+
+    
+</div>
+
+
+{% endblock content %}

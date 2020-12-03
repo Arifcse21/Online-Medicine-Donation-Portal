@@ -1,9 +1,11 @@
 from django.db import models
+from django.conf import settings
+from django.forms import ModelForm
 from django.contrib.auth.models import AbstractUser,BaseUserManager
 # Create your models here.
 
 class UserManager(BaseUserManager):
-    def create_user(self, email,username, first_name, last_name,address, phone, password=None ):
+    def create_user(self, email,username, first_name, last_name,address, phone, password, profile_pic=None ):
         if not email:
             raise ValueError('User must have an email address ')
         if not username:
@@ -16,6 +18,8 @@ class UserManager(BaseUserManager):
             raise ValueError('User must have an address ')
         if not phone:
             raise ValueError('User must have a phone number ')
+        # if not profile_pic:
+        #     raise ValueError('User must have a profile picture ')
         if not password:
             raise ValueError('User must have a password ')
 
@@ -26,6 +30,7 @@ class UserManager(BaseUserManager):
             last_name = last_name,
             address = address,
             phone = phone,
+            profile_pic = profile_pic,
             password = password,
             
         )
@@ -35,7 +40,7 @@ class UserManager(BaseUserManager):
         return user
     
 
-    def create_superuser(self, email, username, first_name, last_name, address, phone, password):
+    def create_superuser(self, email, username, first_name, last_name, address, phone, password, profile_pic=None):
         user = self.create_user(
             email = self.normalize_email(email),
             password = password,
@@ -43,7 +48,8 @@ class UserManager(BaseUserManager):
             first_name = first_name,
             last_name = last_name,
             address = address,
-            phone = phone, 
+            phone = phone,
+            profile_pic= profile_pic, 
         )
 
         user.is_admin = True
@@ -67,6 +73,7 @@ class User(AbstractUser):
     last_name           = models.CharField(max_length=30)
     address             = models.CharField(max_length=1024)
     phone               = models.CharField(max_length=11)
+    profile_pic         = models.ImageField(default='propic.jpg', null=True,blank=True)
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username','first_name','last_name','address', 'phone', 'password']
@@ -83,3 +90,9 @@ class User(AbstractUser):
         return True
 
 
+class Donation(models.Model):
+    user                   = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete = models.CASCADE)
+    Medicines_Name         = models.TextField(blank=False)
+    Quantity               = models.IntegerField(null=False)
+    Home_Address           = models.CharField(max_length=100, blank=False)
+    ZIP                    = models.CharField(max_length=6 , null=False)
