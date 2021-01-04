@@ -145,8 +145,8 @@ EMAIL_FILE_PATH = BASE_DIR / 'sent_email'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'   #for development purpose only
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587 
-EMAIL_HOST_USER = 'arif77198@gmail.com'
-EMAIL_HOST_PASSWORD = 'mxby scky tjwy fiqa'
+EMAIL_HOST_USER = 'username@mail.com'  # Use your mail account id
+EMAIL_HOST_PASSWORD = 'xxxx xxxx xxxx xxxx' # Use your own mail encrypted password
 EMAIL_USE_TLS = True 
 EMAIL_USE_SSL = False
 
