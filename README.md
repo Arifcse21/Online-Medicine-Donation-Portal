@@ -1,4 +1,6 @@
 # MedicineDonationPortal
+## Online unused medicine donation portal.
+### Any volunteer organization may have this kind web app for collecting medicines all over the region.
 
-A online Medicine Donation Portal. Developed using Python Django web framework.
+**Python Django web framework is used building this web app.**
 
