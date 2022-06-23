@@ -150,3 +150,5 @@ EMAIL_HOST_PASSWORD = 'xxxx xxxx xxxx xxxx' # Use your own mail encrypted passwo
 EMAIL_USE_TLS = True 
 EMAIL_USE_SSL = False
 
+
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
